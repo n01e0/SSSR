@@ -1,4 +1,4 @@
-use crate::sat::{SatResult, Cnf};
+use crate::sat::{Cnf, SatResult};
 
 pub fn full_search(cnf: &Cnf) -> Vec<Vec<bool>> {
     let mut ret = Vec::new();

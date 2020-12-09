@@ -74,7 +74,7 @@ impl Cnf {
                         if answers[var] {
                             flag = true;
                         }
-                    },
+                    }
                     dimacs::Sign::Neg => {
                         if !answers[var] {
                             flag = true;

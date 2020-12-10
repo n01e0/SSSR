@@ -21,11 +21,12 @@ fn main() {
         Ok(instance) => match sat::Cnf::from(instance) {
             Ok(cnf) => {
                 let answers = solver::full_search(&cnf);
-                if answers.is_empty() {
-                    println!("This is not satisfiable");
-                } else {
-                    for answer in answers {
-                        println!("This is satisfiable when {:?}", answer);
+                if answers.iter().all(|r| !r.is_satisfiable()) {
+                    println!("This is unsatisfiable");
+                }
+                for answer in answers {
+                    if answer.is_satisfiable() {
+                        println!("This is satisfiable when {}", answer);
                     }
                 }
             }

@@ -1,13 +1,11 @@
 use crate::sat::{Cnf, SatResult};
 
-pub fn full_search(cnf: &Cnf) -> Vec<Vec<bool>> {
+pub fn full_search(cnf: &Cnf) -> Vec<SatResult> {
     let mut ret = Vec::new();
     let bitrange = 1 << (cnf.num_vars);
     for i in 0..bitrange {
         let v = bit_to_vec(i, cnf.num_vars);
-        if let SatResult::Sat(answers) = cnf.solve(v) {
-            ret.push(answers);
-        }
+        ret.push(cnf.solve(v));
     }
 
     return ret;

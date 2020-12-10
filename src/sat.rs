@@ -27,6 +27,15 @@ impl std::fmt::Display for SatResult {
     }
 }
 
+impl SatResult {
+    pub fn is_satisfiable(&self) -> bool {
+        match self {
+            SatResult::Sat(_) => true,
+            SatResult::UnSat => false,
+        }
+    }
+}
+
 #[derive(Debug)]
 pub struct Cnf {
     pub num_vars: u64,
